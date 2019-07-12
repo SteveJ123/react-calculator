@@ -1,0 +1,13 @@
+.App {
+  /* text-align: center; */
+  margin: 20px;
+}
+
+.calc{
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px;
+  height: 30px;
+  grid-gap: 5px;
+  /* margin-left: 20px; */
+}
+
