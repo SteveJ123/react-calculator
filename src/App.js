@@ -9,10 +9,11 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 function App() {
   
-  const [inputValue, setinputValue] = useState('0');
+  const [inputValue, setinputValue] = useState('');
 
   const buttonValue = (event ) =>{
     console.log("button", event.target.innerHTML);
+    setinputValue(inputValue + event.target.innerHTML);
   };
    
   return (
