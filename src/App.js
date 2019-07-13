@@ -9,25 +9,26 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 function App() {
   
-  const [inputValue, setinputValue] = useState('');
+  const [inputValue, setinputValue] = useState(0);
   const [operand1, setoperand1] = useState(0);
-  const [secondvalue, setsecondvalue] = useState(0);
+  // const [secondvalue, setsecondvalue] = useState('');
 
   const buttonValue = (event ) =>{    
     let expr = event.target.innerHTML;    
 switch (expr) {
   case '+':
     console.log('+');
-    setoperand1(inputValue);
-    console.log("operand1", operand1);
-    setinputValue('');
+    let temp = operand1 + Number(inputValue);
+    setoperand1(temp);
+    console.log("temp", temp);
+    setinputValue(temp);
     break;
   case '=':
   console.log('=');  
   setinputValue(Number(operand1)+Number(inputValue));    
     break;
   default:
-    setinputValue(inputValue + event.target.innerHTML);
+    setinputValue(event.target.innerHTML);
 }
   };
 
