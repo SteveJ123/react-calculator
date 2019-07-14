@@ -6,16 +6,17 @@ import bg from '../../leftarrow.png';
 
 
 function Button(props){
-  // console.log(props.setValue);
+
+  let buttonValue = ['<-', 'CE', 'C', '+', 'sq',  7, 8, 9, '/', '%', 4, 5, 6, '*', '1/x', 1, 2, 3, '+', '='];
+  
     return(
-      // <div className="btn-background">
-      //   <img src="../../leftarrow.png" />
-      //   </div>
       
      <>
-      { props.setValue === '' ? 
-       <button className="btn-height" className="btn-background"  onClick={props.onClick} value={props.setValue} ></button> :
-       <button className="btn-height" onClick={props.onClick}>{props.setValue}</button>
+      { buttonValue.map(element => {
+        return (<button className="btn-height"  onClick={props.onClick} value={element}>{element}</button>)
+      })
+      //   :
+      //  <button className="btn-height" onClick={props.onClick}>{props.setValue}</button>
     }
     </>
       

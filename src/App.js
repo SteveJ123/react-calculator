@@ -9,27 +9,37 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 function App() {
   
-  const [inputValue, setinputValue] = useState(0);
+  // let  display = '';
+  const [inputValue, setinputValue] = useState('');
   const [operand1, setoperand1] = useState(0);
+  const [equal, setequal] = useState(false);
   // const [secondvalue, setsecondvalue] = useState('');
 
   const buttonValue = (event ) =>{    
-    let expr = event.target.innerHTML;    
+    //event.target.value did not work
+    let expr = event.target.innerHTML;    //value in the button - that particular button 7 
 switch (expr) {
+  case 'C':
+    console.log('c is pressed');
+    setinputValue('');
+    break;
   case '+':
-    console.log('+');
+    console.log('+');    
     let temp = operand1 + Number(inputValue);
     setoperand1(temp);
     console.log("temp", temp);
-    setinputValue(temp);
+    setinputValue('');
     break;
   case '=':
   console.log('=');  
-  setinputValue(Number(operand1)+Number(inputValue));    
+  setinputValue(Number(operand1)+Number(inputValue));
+  setequal(true);    
     break;
   default:
-    setinputValue(event.target.innerHTML);
+      setinputValue(inputValue + event.target.innerHTML); // ''+7 = 7
+       
 }
+
   };
 
   
@@ -37,28 +47,10 @@ switch (expr) {
   return (
     <div className="App">
       <InputBox value={inputValue} />
-      <div className="calc">           
-      <Button  setValue='<-' onClick={buttonValue}  />
-      <Button  setValue='CE' onClick={buttonValue}/>
-      <Button  setValue='C' onClick={buttonValue} />
-      <Button setValue='+' onClick={buttonValue} />
-      <Button setValue='sq' onClick={buttonValue} />
-      <Button setValue='7' onClick={buttonValue} />
-      <Button  setValue='8' onClick={buttonValue} />
-      <Button  setValue='9' onClick={buttonValue} />
-      <Button setValue='/' onClick={buttonValue} />
-      <Button setValue='%' onClick={buttonValue} />     
-      <Button setValue='4' onClick={buttonValue} />
-      <Button  setValue='5' onClick={buttonValue} />
-      <Button  setValue='6' onClick={buttonValue} />
-      <Button setValue='*' onClick={buttonValue} />
-      <Button setValue='1/x' onClick={buttonValue} />
-      <Button setValue='1' onClick={buttonValue} />
-      <Button  setValue='2' onClick={buttonValue}/>
-      <Button  setValue='3' onClick={buttonValue}/>
-      <Button setValue='+' onClick={buttonValue}/>
-      <Button setValue='=' onClick={buttonValue} />
 
+      <div className="calc">           
+      
+      <Button   onClick={buttonValue}/>      
 
       </div>
       
