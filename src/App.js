@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 import Button from './components/Button/Button';
 import InputBox from './components/InputBox/InputBox';
@@ -10,43 +10,85 @@ import '../node_modules/font-awesome/css/font-awesome.min.css';
 function App() {
   
   // let  display = '';
+  const [display, setdisplay] = useState(0);
   const [inputValue, setinputValue] = useState('');
   const [operand1, setoperand1] = useState(0);
-  const [equal, setequal] = useState(false);
+  const [operatorselected, setoperatorselected] = useState('');
   // const [secondvalue, setsecondvalue] = useState('');
 
-  const buttonValue = (event ) =>{    
+  // useEffect(()=> {
+  //   <InputBox value={inputValue} />
+  // })
+
+
+
+  useEffect(() => { console.log(inputValue, operand1)}, [inputValue])
+  const  buttonValue =  (event ) =>{    
     //event.target.value did not work
+  
+    
     let expr = event.target.innerHTML;    //value in the button - that particular button 7 
 switch (expr) {
   case 'C':
     console.log('c is pressed');
     setinputValue('');
+    setoperand1(0);
     break;
   case '+':
-    console.log('+');    
-    let temp = operand1 + Number(inputValue);
-    setoperand1(temp);
-    console.log("temp", temp);
-    setinputValue('');
+    console.log('+');
+    setoperatorselected('+');       
+    setdisplay(inputValue);
+    let temp = operand1 + Number(inputValue); // 0 + 7
+     setoperand1(temp);    
+     setinputValue('');
+     setdisplay(temp);    
+    break;
+    case '*':
+    console.log('*');
+    setoperatorselected('*');              
+    if(operand1 && inputValue === ''){
+
+    }else if(operand1){
+      setdisplay(inputValue);
+    let temp = operand1 * Number(inputValue); // 0 + 7
+     setoperand1(temp);    
+     setinputValue('');
+     setdisplay(temp);    
+    }else{
+      let temp =  Number(inputValue); // 0 + 7
+     setoperand1(temp);    
+     setinputValue('');
+     setdisplay(temp);    
+    }
+    
     break;
   case '=':
-  console.log('=');  
-  setinputValue(Number(operand1)+Number(inputValue));
-  setequal(true);    
+    if(operatorselected === '+'){
+      var equal = Number(operand1) + Number(inputValue);  
+      }else if(operatorselected === '*'){
+      var equal = Number(operand1) * Number(inputValue);  
+    }
+    setinputValue(equal); 
+  setdisplay(equal);
+    setoperand1(0);  
     break;
   default:
-      setinputValue(inputValue + event.target.innerHTML); // ''+7 = 7
+    let test = inputValue + event.target.innerHTML;
+      setinputValue(test)
+      setdisplay(test);
+      console.log("display", display);
+    
+      
        
-}
-
+};
+    
   };
 
   
    
   return (
     <div className="App">
-      <InputBox value={inputValue} />
+      <InputBox value={display} />
 
       <div className="calc">           
       

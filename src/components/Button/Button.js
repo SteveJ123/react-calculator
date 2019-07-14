@@ -12,8 +12,8 @@ function Button(props){
     return(
       
      <>
-      { buttonValue.map(element => {
-        return (<button className="btn-height"  onClick={props.onClick} value={element}>{element}</button>)
+      { buttonValue.map((element, i) => {
+        return (<button key={i} className="btn-height"  onClick={props.onClick} value={element}>{element}</button>)
       })
       //   :
       //  <button className="btn-height" onClick={props.onClick}>{props.setValue}</button>
